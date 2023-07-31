@@ -4,7 +4,7 @@
 :root {
 	--satoshi: 'Satoshi, sans-serif';
 	--clash: 'Clash Display', sans-serif;
-	--black: #2a254b;
+	--primary: #2a254b;
 	--gray: #726e8d;
 }
 
@@ -16,7 +16,4 @@ body {
 .container {
 	max-width: 1440px;
 	margin: auto;
-}
-.img {
-	max-width: 100%;
 }

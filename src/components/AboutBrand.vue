@@ -52,7 +52,7 @@
 		&__title {
 			text-align: center;
 			font-size: 24px;
-			color: var(--black);
+			color: var(--primary);
 			margin: 0 0 84px 0;
 			font-weight: 400;
 		}
@@ -62,7 +62,7 @@
 			justify-content: space-between;
 		}
 		&-element {
-			color: var(--black);
+			color: var(--primary);
 
 			&-img {
 				display: block;

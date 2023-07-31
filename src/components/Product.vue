@@ -78,7 +78,7 @@
 			font-size: 20px;
 			font-family: var(--satoshi);
 			margin-bottom: 8px;
-			color: var(--black);
+			color: var(--primary);
 			text-decoration: none;
 			transition: opacity, 0s, ease-out, 0.6s;
 			&:hover {
@@ -86,7 +86,7 @@
 			}
 		}
 		&-price {
-			color: var(--black);
+			color: var(--primary);
 			font-size: 18px;
 		}
 	}

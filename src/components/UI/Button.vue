@@ -36,7 +36,7 @@
 <style lang="scss" scoped>
 	.button {
 		background: #fff;
-		color: var(--black);
+		color: var(--primary);
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
