@@ -3,8 +3,9 @@
 		<div class="products">
 			<Product
 				v-for="product of products"
+				:id="product.id"
 				:key="product.id"
-				:img="product.img"
+				:thumbnail="product.thumbnail"
 				:title="product.title"
 				:price="product.price"
 			/>
@@ -18,36 +19,14 @@
 </template>
 
 <script setup>
-	import { ref } from 'vue'
 	import Product from '@/components/Product.vue/'
 	import uiButton from '@/components/UI/Button.vue'
-
-	const products = ref([
-		{
-			id: 1,
-			img: '/img/product1.jpg',
-			title: 'The Dandy chair',
-			price: '250'
-		},
-		{
-			id: 2,
-			img: '/img/product2.jpg',
-			title: 'Rustic Vase Set',
-			price: '155'
-		},
-		{
-			id: 3,
-			img: '/img/product3.jpg',
-			title: 'The Silky Vase',
-			price: '125'
-		},
-		{
-			id: 4,
-			img: '/img/product4.jpg',
-			title: 'The Lucy Lamp',
-			price: '399'
+	const props = defineProps({
+		products: {
+			type: Array,
+			require: true
 		}
-	])
+	})
 </script>
 
 <style lang="scss" scoped>
@@ -55,7 +34,7 @@
 		padding: 0 6%;
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
-		column-gap: 20px;
+		gap: 20px;
 		margin-bottom: 64px;
 		@media screen and (max-width: 1024px) {
 			grid-template-columns: repeat(2, 1fr);
