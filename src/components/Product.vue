@@ -1,11 +1,11 @@
 <template>
 	<div class="product">
-		<a href="#">
+		<router-link to="/">
 			<img :src="img" :alt="title" class="product-image" />
-		</a>
+		</router-link>
 		<div class="product-container">
 			<div class="product-about">
-				<a href="#" class="product-name">{{ title }} </a>
+				<router-link to="/" class="product-name">{{ title }} </router-link>
 				<span class="product-price">{{ price }} руб.</span>
 			</div>
 
@@ -76,9 +76,9 @@
 		}
 		&-name {
 			font-size: 20px;
-			font-family: 'Clash Display', sans-serif;
+			font-family: var(--satoshi);
 			margin-bottom: 8px;
-			color: #2a254b;
+			color: var(--black);
 			text-decoration: none;
 			transition: opacity, 0s, ease-out, 0.6s;
 			&:hover {
@@ -86,7 +86,7 @@
 			}
 		}
 		&-price {
-			color: #2a254b;
+			color: var(--black);
 			font-size: 18px;
 		}
 	}

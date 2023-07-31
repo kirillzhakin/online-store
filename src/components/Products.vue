@@ -1,18 +1,27 @@
 <template>
-	<div class="products">
-		<Product
-			v-for="product of products"
-			:key="product.id"
-			:img="product.img"
-			:title="product.title"
-			:price="product.price"
-		/>
+	<div class="products-container">
+		<div class="products">
+			<Product
+				v-for="product of products"
+				:key="product.id"
+				:img="product.img"
+				:title="product.title"
+				:price="product.price"
+			/>
+		</div>
+		<div class="products-link">
+			<ui-button background="#F9F9F9" type="link" to="/"
+				>View collection</ui-button
+			>
+		</div>
 	</div>
 </template>
 
 <script setup>
 	import { ref } from 'vue'
 	import Product from '@/components/Product.vue/'
+	import uiButton from '@/components/UI/Button.vue'
+
 	const products = ref([
 		{
 			id: 1,
@@ -47,5 +56,13 @@
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		column-gap: 20px;
+		margin-bottom: 64px;
+		&-container {
+			margin-bottom: 56px;
+		}
+		&-link {
+			display: flex;
+			justify-content: center;
+		}
 	}
 </style>

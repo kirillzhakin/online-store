@@ -4,36 +4,34 @@
 			<div class="header-top-search">
 				<img src="/svg/header-search.svg" alt="search" />
 			</div>
-			<a href="#" class="header-logo">Avion</a>
+			<router-link to="/" class="header-logo">Avion</router-link>
 			<div class="header-top-right">
 				<div class="header-top-right__cart">
-					<a href="#">
-						<img src="/svg/header-cart.svg" alt="cart" />
-					</a>
+					<router-link to="/basket">
+						<img src="/svg/header-cart.svg" alt="basket" />
+					</router-link>
 				</div>
 				<div class="header-top-right__profile">
-					<a href="#">
+					<router-link to="/profile">
 						<img src="/svg/header-profile.svg" alt="profile" />
-					</a>
+					</router-link>
 				</div>
 			</div>
 		</div>
 
 		<div class="header-menu">
-			<a
-				:href="element.path"
+			<router-link
+				:to="element.path"
 				v-for="(element, i) of menu"
 				:key="i"
 				class="header-menu__link"
-				>{{ element.name }}</a
+				>{{ element.name }}</router-link
 			>
 		</div>
 	</header>
 </template>
 
 <script setup>
-	// const headerMenu = ref('')
-
 	const menu = [
 		{
 			name: 'Plant post',
@@ -71,7 +69,7 @@
 			}
 		}
 		&-logo {
-			font-family: 'Clash Display', sans-serif;
+			font-family: var(--satoshi);
 			font-size: 24px;
 			text-decoration: none;
 			color: #22202e;
@@ -87,7 +85,7 @@
 			align-items: center;
 			&__link {
 				margin: 0 22px;
-				color: #726e8d;
+				color: var(--gray);
 				text-decoration: none;
 				&:hover {
 					text-decoration: underline;
