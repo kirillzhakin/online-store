@@ -20,6 +20,11 @@
 		background: url('/img/cover.jpg');
 		background-size: cover;
 		justify-content: flex-end;
-		padding-right: 80px;
+		padding-right: 6%;
+		@media screen and (max-width: 620px) {
+			padding: 0;
+			height: auto;
+			background: transparent;
+		}
 	}
 </style>

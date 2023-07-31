@@ -48,22 +48,47 @@
 
 <style lang="scss" scoped>
 	.about-brand {
-		padding: 80px 80px 130px 80px;
+		padding: 80px 6% 130px 6%;
+		@media screen and (max-width: 620px) {
+			padding: 48px 0;
+		}
 		&__title {
 			text-align: center;
 			font-size: 24px;
 			color: var(--primary);
-			margin: 0 0 84px 0;
+			margin-bottom: 84px;
 			font-weight: 400;
+			@media screen and (max-width: 620px) {
+				text-align: left;
+				font-size: 20px;
+				margin-bottom: 36px;
+			}
 		}
 		&-elements {
 			display: grid;
-			grid-template-columns: repeat(4, 210px);
-			justify-content: space-between;
+			grid-template-columns: repeat(4, 1fr);
+			column-gap: 20px;
+			justify-content: center;
+			@media screen and (max-width: 1280px) {
+				grid-template-columns: repeat(4, 1fr);
+				gap: 20px;
+			}
+			@media screen and (max-width: 1024px) {
+				grid-template-columns: repeat(2, 1fr);
+				gap: 20px;
+			}
+			@media screen and (max-width: 620px) {
+				grid-template-columns: 1fr;
+				gap: 20px;
+			}
 		}
 		&-element {
 			color: var(--primary);
-
+			background: var(--lightgray);
+			padding: 48px;
+			@media screen and (max-width: 620px) {
+				padding: 36px 24px;
+			}
 			&-img {
 				display: block;
 				margin-bottom: 12px;

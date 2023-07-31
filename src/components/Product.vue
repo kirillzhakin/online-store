@@ -9,8 +9,8 @@
 				<span class="product-price">{{ price }} руб.</span>
 			</div>
 
-			<button @click="toggleCart" class="product-add">
-				<img v-if="isInCart" src="/svg/trash.svg" alt="Корзина" />
+			<button @click="isInBasket = !isInBasket" class="product-add">
+				<img v-if="isInBasket" src="/svg/trash.svg" alt="Корзина" />
 				<img v-else src="/svg/addcart.svg" alt="Добавить в корзину" />
 			</button>
 		</div>
@@ -20,11 +20,7 @@
 <script setup>
 	import { ref } from 'vue'
 
-	const isInCart = ref(false)
-
-	const toggleCart = () => {
-		isInCart.value = !isInCart.value
-	}
+	const isInBasket = ref(false)
 
 	const props = defineProps({
 		img: {
@@ -46,6 +42,7 @@
 	.product {
 		&-image {
 			display: block;
+			width: 100%;
 			margin-bottom: 24px;
 			transition: opacity, 0s, ease-out, 0.4s;
 			&:hover {
@@ -61,8 +58,8 @@
 			flex-direction: column;
 		}
 		&-add {
-			width: 30px;
-			height: 30px;
+			width: 24px;
+			height: 24px;
 			border: none;
 			background: none;
 			cursor: pointer;
@@ -81,6 +78,9 @@
 			color: var(--primary);
 			text-decoration: none;
 			transition: opacity, 0s, ease-out, 0.6s;
+			@media screen and (max-width: 620px) {
+				font-size: 16px;
+			}
 			&:hover {
 				opacity: 0.5;
 			}
@@ -88,6 +88,9 @@
 		&-price {
 			color: var(--primary);
 			font-size: 18px;
+			@media screen and (max-width: 620px) {
+				font-size: 15px;
+			}
 		}
 	}
 </style>

@@ -47,6 +47,10 @@
 		height: 56px;
 		text-decoration: none;
 		transition: opacity, 0s, ease-out, 0.3s;
+		@media screen and (max-width: 620px) {
+			width: 100%;
+		}
+
 		&:hover {
 			opacity: 0.8;
 		}

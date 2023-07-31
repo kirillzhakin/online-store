@@ -11,6 +11,7 @@
 				>View collection</ui-button
 			>
 		</div>
+		<img class="cover-info__image" src="/img/cover.jpg" alt="cover" />
 	</div>
 </template>
 
@@ -42,6 +43,16 @@
 		max-width: 630px;
 		padding: 50px 55px;
 		height: 444px;
+		@media screen and (max-width: 620px) {
+			padding: 47px 0 32px 0;
+			min-height: 0;
+			height: auto;
+		}
+		&-text {
+			@media screen and (max-width: 620px) {
+				margin-bottom: 32px;
+			}
+		}
 		&__title {
 			font-family: var(--satoshi);
 			font-weight: 400;
@@ -50,6 +61,13 @@
 		}
 		&__description {
 			font-size: 18px;
+		}
+		&__image {
+			display: none;
+			@media screen and (max-width: 620px) {
+				display: block;
+				margin-top: 32px;
+			}
 		}
 	}
 </style>
