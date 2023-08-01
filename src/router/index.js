@@ -1,11 +1,17 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 import Index from '@/views/Index.vue'
+import ProductItem from '@/views/ProductItem.vue'
 const routes = [
 	{
 		path: '/',
 		name: 'Home',
 		component: Index
+	},
+	{
+		path: '/:id',
+		name: 'ProductItem',
+		component: ProductItem
 	}
 ]
 

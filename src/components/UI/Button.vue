@@ -2,22 +2,21 @@
 	<button
 		v-if="type === 'button'"
 		class="button"
-		:style="{ backgroundColor: background }"
+		:style="{ background, color }"
 	>
 		<slot></slot>
 	</button>
-	<router-link
-		v-else
-		:to="to"
-		class="button"
-		:style="{ backgroundColor: background }"
-	>
+	<router-link v-else :to="to" class="button" :style="{ background, color }">
 		<slot></slot>
 	</router-link>
 </template>
 
 <script setup>
 	const props = defineProps({
+		color: {
+			type: String,
+			requred: false
+		},
 		background: {
 			type: String,
 			requred: false

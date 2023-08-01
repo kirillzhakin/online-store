@@ -15,4 +15,13 @@ const getProducts = async () => {
 		console.log(error)
 	}
 }
-export default getProducts
+const getProduct = async id => {
+	try {
+		const { data } = await HTTP.get(`/products/${id}`)
+		console.log(data)
+		return data
+	} catch (error) {
+		console.log(error)
+	}
+}
+export default { getProducts, getProduct }
