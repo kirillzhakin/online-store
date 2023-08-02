@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-	import { ref, onMounted } from 'vue'
+	import { ref, reactive, onMounted, toRef } from 'vue'
 
 	import Button from '@/components/UI/Button.vue'
 	import { useCartStore } from '@/stores/cart'
@@ -46,8 +46,18 @@
 	const cartStore = useCartStore()
 	const isInCart = ref(false)
 
+	const propProduct = reactive({ product: toRef(props, 'product') })
+
 	onMounted(() => {
 		console.log('ProductDetail')
+		const cartInLocalStorage = localStorage.getItem('cart')
+		if (cartInLocalStorage) {
+			const prodId = propProduct.product.id
+			const data = JSON.parse(cartInLocalStorage)
+			data.find(item =>
+				item.id === prodId ? (isInCart.value = true) : (isInCart.value = false)
+			)
+		}
 	})
 
 	const addToCart = product => {
