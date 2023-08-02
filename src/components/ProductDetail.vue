@@ -12,18 +12,14 @@
 					<div>{{ product.description }}</div>
 				</div>
 			</div>
+
 			<Button
 				v-if="!isInCart"
-				@click="addToCart(product)"
+				@click="toggleToCart(product)"
 				background="#2a254b"
-				color="#fff"
-				>Add to Cart</Button
-			>
-			<Button
-				v-else
-				@click="removeToCart(product)"
-				background="#FF9F00"
-				color="#fff"
+				>Add to Cart
+			</Button>
+			<Button v-else @click="toggleToCart(product)" background="#FF9F00"
 				>Remove to Cart</Button
 			>
 		</div>
@@ -45,7 +41,6 @@
 	})
 	const cartStore = useCartStore()
 	const isInCart = ref(false)
-
 	const propProduct = reactive({ product: toRef(props, 'product') })
 
 	onMounted(() => {
@@ -60,13 +55,13 @@
 		}
 	})
 
-	const addToCart = product => {
-		cartStore.addToCart(product)
-		isInCart.value = true
-	}
-	const removeToCart = product => {
-		cartStore.removeToCart(product)
-		isInCart.value = false
+	const toggleToCart = product => {
+		cartStore.toggleToCart(product)
+		if (isInCart.value === false) {
+			isInCart.value = true
+		} else {
+			isInCart.value = false
+		}
 	}
 </script>
 

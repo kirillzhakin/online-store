@@ -37,7 +37,11 @@
 				:key="category"
 				class="header-filters__btn"
 			>
-				<Button padding="0" @click="selectValue(category)">
+				<Button
+					color="var(--primary)"
+					padding="0"
+					@click="selectValue(category)"
+				>
 					{{ category }}
 				</Button>
 			</li>
@@ -48,7 +52,7 @@
 				:key="category"
 				class="header-filters__btn"
 			>
-				<Button @click="selectValue(category)">
+				<Button color="var(--primary)" @click="selectValue(category)">
 					{{ category }}
 				</Button>
 			</li>
@@ -90,6 +94,7 @@
 
 	const productsStore = useProductsStore()
 	const uniqueCategory = computed(() => productsStore.uniqueCategory)
+	console.log(uniqueCategory)
 </script>
 
 <style lang="scss" scoped>

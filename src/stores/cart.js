@@ -11,25 +11,19 @@ export const useCartStore = defineStore('cartStore', () => {
 		cart.value = data
 	}
 
-	const addToCart = product => {
+	const toggleToCart = product => {
 		const cartIndex = cart.value.findIndex(el => el.id === product.id)
 		if (cartIndex === -1) {
 			cart.value.push({ ...product })
 			localStorage.setItem('cart', JSON.stringify(cart.value))
-		}
-	}
-
-	const removeToCart = product => {
-		const cartIndex = cart.value.findIndex(el => el.id === product.id)
-		if (cartIndex !== -1) {
+		} else if (cartIndex !== -1) {
 			cart.value = cart.value.filter(el => el.id !== product.id)
 			localStorage.setItem('cart', JSON.stringify(cart.value))
 		}
 	}
 
 	return {
-		addToCart,
-		removeToCart,
+		toggleToCart,
 		cartLength
 	}
 })

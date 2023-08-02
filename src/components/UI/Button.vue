@@ -44,7 +44,7 @@
 <style lang="scss" scoped>
 	.button {
 		background: #fff;
-		color: var(--primary);
+		color: #fff;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;

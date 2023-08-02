@@ -10,12 +10,9 @@
 				</router-link>
 				<span class="product-price">{{ product.price }} $</span>
 			</div>
-
-			<button v-if="!isInCart" @click="addToCart(product)" class="product-add">
-				<img src="/svg/addcart.svg" alt="Добавить в корзину" />
-			</button>
-			<button v-else @click="removeToCart(product)" class="product-add">
-				<img src="/svg/trash.svg" alt="Корзина" />
+			<button @click="toggleToCart(product)" class="product-add">
+				<img v-if="!isInCart" src="/svg/addcart.svg" alt="Добавить в корзину" />
+				<img v-else src="/svg/trash.svg" alt="Корзина" />
 			</button>
 		</div>
 	</div>
@@ -47,13 +44,13 @@
 		}
 	})
 
-	const addToCart = product => {
-		cartStore.addToCart(product)
-		isInCart.value = true
-	}
-	const removeToCart = product => {
-		cartStore.removeToCart(product)
-		isInCart.value = false
+	const toggleToCart = product => {
+		cartStore.toggleToCart(product)
+		if (isInCart.value === false) {
+			isInCart.value = true
+		} else {
+			isInCart.value = false
+		}
 	}
 </script>
 
