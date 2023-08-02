@@ -78,7 +78,7 @@
 
 		&-name {
 			font-size: 20px;
-			font-family: var(--satoshi);
+			font-family: var(--inter);
 			margin-bottom: 8px;
 			color: var(--primary);
 			text-decoration: none;

@@ -54,7 +54,7 @@
 			}
 		}
 		&__title {
-			font-family: var(--satoshi);
+			font-family: var(--inter);
 			font-weight: 400;
 			line-height: 1.5;
 			margin: 0 0 20px 0;

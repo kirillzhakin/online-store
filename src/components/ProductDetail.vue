@@ -63,6 +63,8 @@
 <style lang="scss" scoped>
 	.product {
 		background: var(--lightgray);
+		font-family: var(--clash);
+
 		padding: 50px 50px 50px 0;
 		display: grid;
 		grid-template-columns: minmax(auto, 500px) minmax(auto, 500px);
@@ -97,7 +99,6 @@
 		}
 		&-name {
 			margin: 0 0 16px 0;
-			font-family: var(--clash);
 			font-size: 36px;
 			@media screen and (max-width: 620px) {
 				font-size: 26px;

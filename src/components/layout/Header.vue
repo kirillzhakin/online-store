@@ -167,7 +167,7 @@
 			}
 		}
 		&-logo {
-			font-family: var(--satoshi);
+			font-family: var(--inter);
 			font-size: 24px;
 			text-decoration: none;
 			color: #22202e;
