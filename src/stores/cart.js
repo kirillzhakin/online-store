@@ -8,7 +8,6 @@ export const useCartStore = defineStore('cartStore', () => {
 	const cartInLocalStorage = localStorage.getItem('cart')
 	if (cartInLocalStorage) {
 		const data = JSON.parse(cartInLocalStorage)
-		console.log(data)
 		cart.value = data
 	}
 
@@ -27,16 +26,10 @@ export const useCartStore = defineStore('cartStore', () => {
 			localStorage.setItem('cart', JSON.stringify(cart.value))
 		}
 	}
-	// const getCart = product => {
-	// 	const cartIndex = cart.value.findIndex(el => el.id === product.id)
-	// 	if (cartIndex !== -1) return true
-	// 	return false
-	// }
 
 	return {
 		addToCart,
 		removeToCart,
-		// getCart,
 		cartLength
 	}
 })

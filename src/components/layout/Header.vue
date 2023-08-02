@@ -41,9 +41,6 @@
 					{{ category }}
 				</Button>
 			</li>
-			<Button padding="0" @click="selectValue('all products')">
-				all products
-			</Button>
 		</ui>
 		<ui class="header-filters-mobile" v-if="isOpenedMobileFilters">
 			<li
@@ -55,7 +52,21 @@
 					{{ category }}
 				</Button>
 			</li>
-			<Button @click="selectValue('all products')"> all products </Button>
+			<div class="header-top-right header-top-right-mobile">
+				<div class="header-top-right__cart">
+					<router-link to="/cart">
+						<img src="/svg/header-cart.svg" alt="cart" />
+						<span class="header-top-right__count" v-if="cartStore.cartLength">{{
+							cartStore.cartLength
+						}}</span>
+					</router-link>
+				</div>
+				<div class="header-top-right__profile">
+					<router-link to="/profile">
+						<img src="/svg/header-profile.svg" alt="profile" />
+					</router-link>
+				</div>
+			</div>
 		</ui>
 	</header>
 </template>
@@ -70,8 +81,6 @@
 	const userStore = useUserStore()
 
 	const selectValue = category => {
-		console.log('selectedValue')
-		console.log(category)
 		if (category === 'all products') return userStore.allProducts()
 		userStore.addSelectedProducts(category)
 	}
@@ -132,6 +141,10 @@
 				@media screen and (max-width: 620px) {
 					display: none;
 				}
+				&-mobile {
+					display: flex;
+					justify-content: center;
+				}
 				&__cart {
 					margin-right: 16px;
 					position: relative;
@@ -181,7 +194,7 @@
 				list-style-type: none;
 				@media screen and (max-width: 620px) {
 					display: block;
-					margin-bottom: 20px;
+					margin: 0 0 20px 0;
 				}
 				&:hover {
 					text-decoration: underline;

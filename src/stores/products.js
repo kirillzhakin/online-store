@@ -13,6 +13,7 @@ export const useProductsStore = defineStore('productsStore', () => {
 	const uniqueCategory = computed(() => {
 		const uniqueCategory = new Set()
 		products.value.forEach(product => uniqueCategory.add(product.category))
+		uniqueCategory.add('all products')
 		return uniqueCategory
 	})
 
