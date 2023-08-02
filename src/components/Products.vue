@@ -1,7 +1,9 @@
 <template>
 	<div class="products-container">
 		<div class="products">
-			<Product v-for="product of products" :product="product" />
+			<transition-group name="list">
+				<Product v-for="product of products" :product="product" />
+			</transition-group>
 		</div>
 	</div>
 </template>
@@ -17,6 +19,32 @@
 </script>
 
 <style lang="scss" scoped>
+	.list-enter-active,
+	.list-leave-active,
+	.list-move {
+		transition: 500ms cubic-bezier(0.59, 0.12, 0.34, 0.95);
+		transition-property: opacity, transform;
+	}
+
+	.list-enter {
+		opacity: 0;
+		transform: translateX(50px) scaleY(0.5);
+	}
+
+	.list-enter-to {
+		opacity: 1;
+		transform: translateX(0) scaleY(1);
+	}
+
+	.list-leave-active {
+		position: absolute;
+	}
+
+	.list-leave-to {
+		opacity: 0;
+		transform: scaleY(0);
+		transform-origin: center top;
+	}
 	.products {
 		padding: 50px 6% 0 6%;
 		display: grid;

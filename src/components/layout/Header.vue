@@ -46,32 +46,38 @@
 				</Button>
 			</li>
 		</ui>
-		<ui class="header-filters-mobile" v-if="isOpenedMobileFilters">
-			<li
-				v-for="category of uniqueCategory"
-				:key="category"
-				class="header-filters__btn"
-			>
-				<Button color="var(--primary)" @click="selectValue(category)">
-					{{ category }}
-				</Button>
-			</li>
-			<div class="header-top-right header-top-right-mobile">
-				<div class="header-top-right__cart">
-					<router-link to="/cart">
-						<img src="/svg/header-cart.svg" alt="cart" />
-						<span class="header-top-right__count" v-if="cartStore.cartLength">{{
-							cartStore.cartLength
-						}}</span>
-					</router-link>
-				</div>
-				<div class="header-top-right__profile">
-					<router-link to="/profile">
-						<img src="/svg/header-profile.svg" alt="profile" />
-					</router-link>
+		<transition name="slide-fade">
+			<div class="header-filters-mobile" v-if="isOpenedMobileFilters">
+				<ui>
+					<li
+						v-for="category of uniqueCategory"
+						:key="category"
+						class="header-filters__btn"
+					>
+						<Button color="var(--primary)" @click="selectValue(category)">
+							{{ category }}
+						</Button>
+					</li>
+				</ui>
+				<div class="header-top-right header-top-right-mobile">
+					<div class="header-top-right__cart">
+						<router-link to="/cart">
+							<img src="/svg/header-cart.svg" alt="cart" />
+							<span
+								class="header-top-right__count"
+								v-if="cartStore.cartLength"
+								>{{ cartStore.cartLength }}</span
+							>
+						</router-link>
+					</div>
+					<div class="header-top-right__profile">
+						<router-link to="/profile">
+							<img src="/svg/header-profile.svg" alt="profile" />
+						</router-link>
+					</div>
 				</div>
 			</div>
-		</ui>
+		</transition>
 	</header>
 </template>
 
@@ -98,6 +104,20 @@
 </script>
 
 <style lang="scss" scoped>
+	.slide-fade-enter-active {
+		transition: all 0.3s ease;
+	}
+
+	.slide-fade-leave-active {
+		transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+	}
+
+	.slide-fade-enter,
+	.slide-fade-leave-active {
+		padding-left: 10px;
+		opacity: 0;
+	}
+
 	.header {
 		height: 132px;
 		position: relative;

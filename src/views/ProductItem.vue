@@ -1,6 +1,8 @@
 <template>
 	<Loader v-if="loading" />
-	<ProductDetail v-else :product="currentProduct" />
+	<transition v-else name="fade">
+		<ProductDetail :product="currentProduct" />
+	</transition>
 </template>
 
 <script setup>
@@ -21,3 +23,15 @@
 		loading.value = false
 	})
 </script>
+
+<style lang="scss" scoped>
+	.fade-enter-active,
+	.fade-leave-active {
+		transition: opacity 0.5s ease;
+	}
+
+	.fade-enter-from,
+	.fade-leave-to {
+		opacity: 0;
+	}
+</style>
