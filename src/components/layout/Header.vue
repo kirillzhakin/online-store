@@ -37,11 +37,13 @@
 				:key="category"
 				class="header-filters__btn"
 			>
-				<Button padding="0">
+				<Button padding="0" @click="selectValue(category)">
 					{{ category }}
 				</Button>
 			</li>
-			<Button padding="0"> all products </Button>
+			<Button padding="0" @click="selectValue('all products')">
+				all products
+			</Button>
 		</ui>
 		<ui class="header-filters-mobile" v-if="isOpenedMobileFilters">
 			<li
@@ -49,11 +51,11 @@
 				:key="category"
 				class="header-filters__btn"
 			>
-				<Button>
+				<Button @click="selectValue(category)">
 					{{ category }}
 				</Button>
 			</li>
-			<Button> all products </Button>
+			<Button @click="selectValue('all products')"> all products </Button>
 		</ui>
 	</header>
 </template>
@@ -62,13 +64,23 @@
 	import { ref, computed } from 'vue'
 	import { useCartStore } from '@/stores/cart'
 	import { useProductsStore } from '@/stores/products'
+	import { useUserStore } from '@/stores/user'
 	import Button from '@/components/UI/Button.vue'
+
+	const userStore = useUserStore()
+
+	const selectValue = category => {
+		console.log('selectedValue')
+		console.log(category)
+		if (category === 'all products') return userStore.allProducts()
+		userStore.addSelectedProducts(category)
+	}
 
 	const isOpenedMobileFilters = ref(false)
 	const cartStore = useCartStore()
 
 	const productsStore = useProductsStore()
-	const uniqueCategory = computed(() => productsStore.uniqueCategory())
+	const uniqueCategory = computed(() => productsStore.uniqueCategory)
 </script>
 
 <style lang="scss" scoped>

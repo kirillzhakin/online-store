@@ -13,7 +13,7 @@
 	const loading = ref(true)
 
 	const productsStore = useProductsStore()
-	const filtredProducts = computed(() => productsStore.filtredProducts())
+	const filtredProducts = computed(() => productsStore.filtredProducts)
 
 	onMounted(() => {
 		productsStore.fetchProducts()
