@@ -63,7 +63,7 @@
 	.preloader {
 		text-align: center;
 		width: 100%;
-		margin-bottom: 80px;
+		margin: 80px 0 80px 0;
 	}
 	.preloader__text {
 		position: relative;

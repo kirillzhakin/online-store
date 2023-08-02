@@ -5,7 +5,6 @@
 
 <script setup>
 	import { onMounted, ref, computed } from 'vue'
-
 	import Products from '@/components/Products.vue'
 	import Loader from '@/components/UI/Loader.vue'
 	import { useProductsStore } from '@/stores/products'
