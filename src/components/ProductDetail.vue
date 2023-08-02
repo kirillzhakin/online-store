@@ -1,11 +1,7 @@
 <template>
 	<div class="product">
 		<div class="product-block">
-			<img
-				class="product-image"
-				:src="product.thumbnail"
-				:alt="product.title"
-			/>
+			<img class="product-image" :src="product.image" :alt="product.title" />
 		</div>
 		<div class="product-block">
 			<div class="product-about">
@@ -16,13 +12,30 @@
 					<div>{{ product.description }}</div>
 				</div>
 			</div>
-			<Button background="#2a254b" color="#fff">Add to Cart</Button>
+			<Button
+				v-if="!isInCart"
+				@click="addToCart(product)"
+				background="#2a254b"
+				color="#fff"
+				>Add to Cart</Button
+			>
+			<Button
+				v-else
+				@click="removeToCart(product)"
+				background="#FF9F00"
+				color="#fff"
+				>Remove to Cart</Button
+			>
 		</div>
 	</div>
 </template>
 
 <script setup>
+	import { ref, onMounted } from 'vue'
+
 	import Button from '@/components/UI/Button.vue'
+	import { useCartStore } from '@/stores/cart'
+
 	const props = defineProps({
 		product: {
 			type: Object,
@@ -30,6 +43,21 @@
 			required: true
 		}
 	})
+	const cartStore = useCartStore()
+	const isInCart = ref(false)
+
+	onMounted(() => {
+		console.log('ProductDetail')
+	})
+
+	const addToCart = product => {
+		cartStore.addToCart(product)
+		isInCart.value = true
+	}
+	const removeToCart = product => {
+		cartStore.removeToCart(product)
+		isInCart.value = false
+	}
 </script>
 
 <style lang="scss" scoped>
@@ -40,6 +68,7 @@
 		grid-template-columns: minmax(auto, 500px) minmax(auto, 500px);
 		column-gap: 65px;
 		align-items: center;
+		margin-bottom: 65px;
 		@media screen and (max-width: 620px) {
 			display: flex;
 			flex-direction: column;

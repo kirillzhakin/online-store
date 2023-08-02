@@ -1,3 +1,3 @@
 export default {
-	MOCK: 'https://dummyjson.com'
+	MOCK: 'https://fakestoreapi.com'
 }

@@ -7,17 +7,20 @@
 				</div>
 				<div
 					class="header-top-mobile-menu"
-					@click="isOpenedMobileMenu = !isOpenedMobileMenu"
+					@click="isOpenedMobileFilters = !isOpenedMobileFilters"
 				>
 					<img src="/svg/menu.svg" alt="menu" />
 				</div>
 			</div>
 
-			<router-link to="/" class="header-logo">Avion</router-link>
+			<router-link to="/" class="header-logo">Online Shop</router-link>
 			<div class="header-top-right">
 				<div class="header-top-right__cart">
-					<router-link to="/basket">
-						<img src="/svg/header-cart.svg" alt="basket" />
+					<router-link to="/cart">
+						<img src="/svg/header-cart.svg" alt="cart" />
+						<span class="header-top-right__count" v-if="cartStore.cartLength">{{
+							cartStore.cartLength
+						}}</span>
 					</router-link>
 				</div>
 				<div class="header-top-right__profile">
@@ -28,45 +31,44 @@
 			</div>
 		</div>
 
-		<div class="header-menu">
-			<router-link
-				:to="element.path"
-				v-for="(element, i) of menu"
-				:key="i"
-				class="header-menu__link"
-				>{{ element.name }}</router-link
+		<ui class="header-filters">
+			<li
+				v-for="category of uniqueCategory"
+				:key="category"
+				class="header-filters__btn"
 			>
-		</div>
-		<div class="header-menu-mobile" v-if="isOpenedMobileMenu">
-			<router-link
-				:to="element.path"
-				v-for="(element, i) of menu"
-				:key="i"
-				class="header-menu__link"
-				>{{ element.name }}</router-link
+				<Button padding="0">
+					{{ category }}
+				</Button>
+			</li>
+			<Button padding="0"> all products </Button>
+		</ui>
+		<ui class="header-filters-mobile" v-if="isOpenedMobileFilters">
+			<li
+				v-for="category of uniqueCategory"
+				:key="category"
+				class="header-filters__btn"
 			>
-		</div>
+				<Button>
+					{{ category }}
+				</Button>
+			</li>
+			<Button> all products </Button>
+		</ui>
 	</header>
 </template>
 
 <script setup>
-	import { ref } from 'vue'
-	const menu = [
-		{
-			name: 'Plant post',
-			path: '/plant'
-		},
-		{
-			name: 'Ceramics',
-			path: '/ceramics'
-		},
-		{
-			name: 'Tables',
-			path: '/tables'
-		}
-	]
+	import { ref, computed } from 'vue'
+	import { useCartStore } from '@/stores/cart'
+	import { useProductsStore } from '@/stores/products'
+	import Button from '@/components/UI/Button.vue'
 
-	const isOpenedMobileMenu = ref(false)
+	const isOpenedMobileFilters = ref(false)
+	const cartStore = useCartStore()
+
+	const productsStore = useProductsStore()
+	const uniqueCategory = computed(() => productsStore.uniqueCategory())
 </script>
 
 <style lang="scss" scoped>
@@ -120,6 +122,22 @@
 				}
 				&__cart {
 					margin-right: 16px;
+					position: relative;
+				}
+				&__count {
+					position: absolute;
+					width: 15px;
+					height: 15px;
+					background: #9b9898;
+					border-radius: 50%;
+					color: #fff;
+					font-size: 10px;
+					text-decoration: none;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					left: -50%;
+					bottom: 0;
 				}
 			}
 		}
@@ -136,7 +154,7 @@
 				text-decoration: underline;
 			}
 		}
-		&-menu {
+		&-filters {
 			height: 62px;
 			display: flex;
 			justify-content: center;
@@ -145,10 +163,10 @@
 				display: none;
 				height: 0;
 			}
-			&__link {
+			&__btn {
 				margin: 0 22px;
 				color: var(--gray);
-				text-decoration: none;
+				list-style-type: none;
 				@media screen and (max-width: 620px) {
 					display: block;
 					margin-bottom: 20px;
@@ -158,12 +176,16 @@
 				}
 			}
 			&-mobile {
-				position: absolute;
-				background: #fff;
-				width: 100%;
-				top: 100px;
-				border: 1px solid;
-				padding: 40px 24px;
+				display: none;
+				@media screen and (max-width: 620px) {
+					display: block;
+					position: absolute;
+					background: #fff;
+					width: 100%;
+					top: 100px;
+					border: 1px solid;
+					padding: 40px 24px;
+				}
 			}
 		}
 	}

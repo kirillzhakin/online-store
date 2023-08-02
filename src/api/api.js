@@ -6,7 +6,7 @@ export const HTTP = axios.create({
 	baseURL: config.MOCK
 })
 
-const getProducts = async () => {
+const getProducts = async limit => {
 	try {
 		const { data } = await HTTP.get('/products')
 		console.log(data)
@@ -15,6 +15,7 @@ const getProducts = async () => {
 		console.log(error)
 	}
 }
+
 const getProduct = async id => {
 	try {
 		const { data } = await HTTP.get(`/products/${id}`)

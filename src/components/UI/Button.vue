@@ -2,11 +2,16 @@
 	<button
 		v-if="type === 'button'"
 		class="button"
-		:style="{ background, color }"
+		:style="{ background, color, padding }"
 	>
 		<slot></slot>
 	</button>
-	<router-link v-else :to="to" class="button" :style="{ background, color }">
+	<router-link
+		v-else
+		:to="to"
+		class="button"
+		:style="{ background, color, padding }"
+	>
 		<slot></slot>
 	</router-link>
 </template>
@@ -18,6 +23,10 @@
 			requred: false
 		},
 		background: {
+			type: String,
+			requred: false
+		},
+		padding: {
 			type: String,
 			requred: false
 		},
@@ -51,7 +60,7 @@
 		}
 
 		&:hover {
-			opacity: 0.8;
+			opacity: 0.5;
 		}
 	}
 </style>

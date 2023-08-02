@@ -1,47 +1,52 @@
 <template>
 	<div class="product">
-		<router-link :to="`/${id}`" class="product-link">
-			<img :src="thumbnail" :alt="title" class="product-image" />
+		<router-link :to="`products/${product.id}`" class="product-link">
+			<img :src="product.image" :alt="product.title" class="product-image" />
 		</router-link>
 		<div class="product-container">
 			<div class="product-about">
-				<router-link :to="`/${id}`" class="product-name"
-					>{{ title }}
+				<router-link :to="`products/${product.id}`" class="product-name"
+					>{{ product.title }}
 				</router-link>
-				<span class="product-price">{{ price }} $</span>
+				<span class="product-price">{{ product.price }} $</span>
 			</div>
 
-			<button @click="isInBasket = !isInBasket" class="product-add">
-				<img v-if="isInBasket" src="/svg/trash.svg" alt="Корзина" />
-				<img v-else src="/svg/addcart.svg" alt="Добавить в корзину" />
+			<button v-if="!isInCart" @click="addToCart(product)" class="product-add">
+				<img src="/svg/addcart.svg" alt="Добавить в корзину" />
+			</button>
+			<button v-else @click="removeToCart(product)" class="product-add">
+				<img src="/svg/trash.svg" alt="Корзина" />
 			</button>
 		</div>
 	</div>
 </template>
 
 <script setup>
-	import { ref } from 'vue'
+	import { ref, onMounted } from 'vue'
+	import { useCartStore } from '@/stores/cart'
 
-	const isInBasket = ref(false)
-
+	const isInCart = ref(false)
+	const cartStore = useCartStore()
 	const props = defineProps({
-		id: {
-			type: String,
-			required: true
-		},
-		thumbnail: {
-			type: String,
-			required: true
-		},
-		title: {
-			type: String,
-			required: true
-		},
-		price: {
-			type: String,
+		product: {
+			type: Object,
+			default: () => {},
 			required: true
 		}
 	})
+
+	onMounted(() => {
+		console.log('Product')
+	})
+
+	const addToCart = product => {
+		cartStore.addToCart(product)
+		isInCart.value = true
+	}
+	const removeToCart = product => {
+		cartStore.removeToCart(product)
+		isInCart.value = false
+	}
 </script>
 
 <style lang="scss" scoped>
