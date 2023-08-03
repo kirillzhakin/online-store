@@ -41,25 +41,25 @@
 	const noImage = [
 		{
 			id: 1,
-			img: '../../public/img/no-image.jpg'
+			img: '/public/img/no-image.jpg'
 		}
 	]
 	const sliderItem = [
 		{
 			id: 1,
-			img: '../../public/img/top_1.jpg'
+			img: '/public/img/top_1.jpg'
 		},
 		{
 			id: 2,
-			img: '../../public/img/top_2.jpg'
+			img: '/public/img/top_2.jpg'
 		},
 		{
 			id: 3,
-			img: '../../public/img/top_3.jpg'
+			img: '/public/img/top_3.jpg'
 		},
 		{
 			id: 4,
-			img: '../../public/img/top_4.jpg'
+			img: '/public/img/top_4.jpg'
 		}
 	]
 
