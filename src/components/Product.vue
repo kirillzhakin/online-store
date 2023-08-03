@@ -11,8 +11,8 @@
 				<span class="product-price">{{ product.price }} $</span>
 			</div>
 			<button @click="toggleToCart(product)" class="product-add">
-				<img v-if="!isInCart" src="/svg/addcart.svg" alt="Добавить в корзину" />
-				<img v-else src="/svg/trash.svg" alt="Корзина" />
+				<img v-if="!isInCart" src="/svg/addcart.svg" alt="add to cart" />
+				<img v-else src="/svg/trash.svg" alt="remove to cart" />
 			</button>
 		</div>
 	</div>

@@ -1,8 +1,6 @@
 <template>
 	<div class="product">
-		<div class="product-block">
-			<img class="product-image" :src="product.image" :alt="product.title" />
-		</div>
+		<Slider :slider="sliderItem ? sliderItem : noImage" />
 		<div class="product-block">
 			<div class="product-about">
 				<h2 class="product-name">{{ product.title }}</h2>
@@ -30,6 +28,7 @@
 	import { ref, reactive, onMounted, toRef } from 'vue'
 
 	import Button from '@/components/UI/Button.vue'
+	import Slider from '@/components/Slider.vue'
 	import { useCartStore } from '@/stores/cart'
 
 	const props = defineProps({
@@ -39,12 +38,36 @@
 			required: true
 		}
 	})
+	const noImage = [
+		{
+			id: 1,
+			img: '../../public/img/no-image.jpg'
+		}
+	]
+	const sliderItem = [
+		{
+			id: 1,
+			img: '../../public/img/top_1.jpg'
+		},
+		{
+			id: 2,
+			img: '../../public/img/top_2.jpg'
+		},
+		{
+			id: 3,
+			img: '../../public/img/top_3.jpg'
+		},
+		{
+			id: 4,
+			img: '../../public/img/top_4.jpg'
+		}
+	]
+
 	const cartStore = useCartStore()
 	const isInCart = ref(false)
 	const propProduct = reactive({ product: toRef(props, 'product') })
 
 	onMounted(() => {
-		console.log('ProductDetail')
 		const cartInLocalStorage = localStorage.getItem('cart')
 		if (cartInLocalStorage) {
 			const prodId = propProduct.product.id
@@ -69,7 +92,6 @@
 	.product {
 		background: var(--lightgray);
 		font-family: var(--clash);
-
 		padding: 50px 50px 50px 0;
 		display: grid;
 		grid-template-columns: minmax(auto, 500px) minmax(auto, 500px);

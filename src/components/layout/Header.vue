@@ -97,10 +97,8 @@
 
 	const isOpenedMobileFilters = ref(false)
 	const cartStore = useCartStore()
-
 	const productsStore = useProductsStore()
 	const uniqueCategory = computed(() => productsStore.uniqueCategory)
-	console.log(uniqueCategory)
 </script>
 
 <style lang="scss" scoped>
