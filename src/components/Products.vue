@@ -2,18 +2,24 @@
 	<div class="products-container">
 		<div class="products">
 			<transition-group name="list">
-				<Product v-for="product of products" :product="product" />
+				<ProductElement
+					v-for="product of products"
+					:product="product"
+					:key="product.id"
+				/>
 			</transition-group>
 		</div>
 	</div>
 </template>
 
-<script setup>
-	import Product from '@/components/Product.vue/'
+<script lang="ts" setup>
+	import ProductElement from '@/components/ProductElement.vue'
+	import type { Product } from '@/types/product'
+
 	const props = defineProps({
 		products: {
-			type: Array,
-			require: true
+			type: Array as () => Product[],
+			required: true
 		}
 	})
 </script>

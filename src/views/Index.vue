@@ -2,6 +2,6 @@
 	<PopularProducts />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 	import PopularProducts from '@/components/PopularProducts.vue'
 </script>

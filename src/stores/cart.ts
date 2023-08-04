@@ -1,9 +1,10 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import type { Product } from '@/types/product'
 
 export const useCartStore = defineStore('cartStore', () => {
-	const cart = ref([])
-	const cartLength = computed(() => cart.value.length)
+	const cart = ref<Product[]>([])
+	const cartLength = computed<number>(() => cart.value.length)
 
 	const cartInLocalStorage = localStorage.getItem('cart')
 	if (cartInLocalStorage) {
@@ -11,7 +12,7 @@ export const useCartStore = defineStore('cartStore', () => {
 		cart.value = data
 	}
 
-	const toggleToCart = product => {
+	const toggleToCart = (product: Product): void => {
 		const cartIndex = cart.value.findIndex(el => el.id === product.id)
 		if (cartIndex === -1) {
 			cart.value.push({ ...product })
@@ -23,7 +24,7 @@ export const useCartStore = defineStore('cartStore', () => {
 	}
 
 	return {
-		toggleToCart,
-		cartLength
+		cartLength,
+		toggleToCart
 	}
 })

@@ -16,7 +16,7 @@
 	</router-link>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 	const props = defineProps({
 		color: {
 			type: String,
@@ -36,6 +36,7 @@
 		},
 		to: {
 			type: String,
+			default: '/',
 			requred: false
 		}
 	})

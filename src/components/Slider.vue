@@ -20,27 +20,27 @@
 	</div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 	import { ref, toRef, reactive, onMounted } from 'vue'
-
+	import type { Image } from '@/types/image'
 	const props = defineProps({
 		slider: {
-			type: Array,
+			type: Array as () => Image[],
 			default: () => [],
 			required: false
 		}
 	})
-	const image = ref('')
-	const currentSliderIndex = ref(0)
+	const image = ref<string>('')
+	const currentSliderIndex = ref<number>(0)
 	const propSlider = reactive({ slider: toRef(props, 'slider') })
 
-	const prevSlide = () => {
+	const prevSlide = (): void => {
 		if (currentSliderIndex.value > 0) {
 			currentSliderIndex.value--
 			image.value = propSlider.slider[currentSliderIndex.value].img
 		}
 	}
-	const nextSlide = () => {
+	const nextSlide = (): void => {
 		if (currentSliderIndex.value >= propSlider.slider.length - 1) return
 		currentSliderIndex.value++
 		image.value = propSlider.slider[currentSliderIndex.value].img

@@ -13,8 +13,14 @@
 	</div>
 </template>
 
-<script setup>
-	const aboutBrands = [
+<script lang="ts" setup>
+	interface Brand {
+		img: string
+		title: string
+		description: string
+		alt: string
+	}
+	const aboutBrands: Brand[] = [
 		{
 			img: '/svg/about-brand-1.svg',
 			title: 'Next day as standard',

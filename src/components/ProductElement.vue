@@ -18,16 +18,18 @@
 	</div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 	import { ref, reactive, onMounted, toRef } from 'vue'
 	import { useCartStore } from '@/stores/cart'
+	import type { Product } from '@/types/product'
 
-	const isInCart = ref(false)
+	const isInCart = ref<boolean>(false)
 	const cartStore = useCartStore()
+
 	const props = defineProps({
 		product: {
-			type: Object,
-			default: () => {},
+			type: Object as () => Product,
+			default: () => ({} as Product),
 			required: true
 		}
 	})
@@ -37,14 +39,14 @@
 		const cartInLocalStorage = localStorage.getItem('cart')
 		if (cartInLocalStorage) {
 			const prodId = propProduct.product.id
-			const data = JSON.parse(cartInLocalStorage)
+			const data: Product[] = JSON.parse(cartInLocalStorage)
 			data.find(item =>
 				item.id === prodId ? (isInCart.value = true) : (isInCart.value = false)
 			)
 		}
 	})
 
-	const toggleToCart = product => {
+	const toggleToCart = (product: Product): void => {
 		cartStore.toggleToCart(product)
 		if (isInCart.value === false) {
 			isInCart.value = true

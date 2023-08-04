@@ -81,24 +81,28 @@
 	</header>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 	import { ref, computed } from 'vue'
-	import { useCartStore } from '@/stores/cart'
 	import { useProductsStore } from '@/stores/products'
+	import type { ComputedRef } from 'vue'
+	import { useCartStore } from '@/stores/cart'
 	import { useUserStore } from '@/stores/user'
 	import Button from '@/components/UI/Button.vue'
 
 	const userStore = useUserStore()
 
-	const selectValue = category => {
+	const selectValue = (category: string): void => {
 		if (category === 'all products') return userStore.allProducts()
-		userStore.addSelectedProducts(category)
+		userStore.addSelectedProducts([category])
 	}
 
 	const isOpenedMobileFilters = ref(false)
 	const cartStore = useCartStore()
 	const productsStore = useProductsStore()
-	const uniqueCategory = computed(() => productsStore.uniqueCategory)
+
+	const uniqueCategory: ComputedRef<string[]> = computed(
+		() => productsStore.uniqueCategory
+	)
 </script>
 
 <style lang="scss" scoped>

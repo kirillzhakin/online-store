@@ -5,22 +5,28 @@
 	</transition>
 </template>
 
-<script setup>
-	import api from '@/api/api'
+<script lang="ts" setup>
+	import { getProduct } from '@/api/api'
 	import { onMounted, ref } from 'vue'
 	import { useRoute } from 'vue-router'
+
 	import ProductDetail from '@/components/ProductDetail.vue'
 	import Loader from '@/components/UI/Loader.vue'
-	const loading = ref(true)
+	import type { Product } from '@/types/product'
+
+	const loading = ref<boolean>(true)
 
 	const route = useRoute()
-	const productId = ref('')
-	const currentProduct = ref({})
+	const productId = ref<number>()
+	const currentProduct = ref<Product>({} as Product)
 
 	onMounted(async () => {
-		productId.value = route.params.id
-		currentProduct.value = await api.getProduct(productId.value)
-		loading.value = false
+		productId.value = Number(route.params.id)
+		const productData = await getProduct(productId.value)
+		if (productData !== null) {
+			currentProduct.value = productData
+			loading.value = false
+		}
 	})
 </script>
 

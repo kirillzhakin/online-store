@@ -1,21 +1,25 @@
 <template>
 	<Loader v-if="loading" />
-	<Products v-else :products="filtredProducts" />
+	<Products v-else :products="filteredProducts" />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 	import { onMounted, ref, computed } from 'vue'
 	import Products from '@/components/Products.vue'
 	import Loader from '@/components/UI/Loader.vue'
 	import { useProductsStore } from '@/stores/products'
+	import type { Product } from '@/types/product'
 
-	const loading = ref(true)
+	const loading = ref<boolean>(true)
 
 	const productsStore = useProductsStore()
-	const filtredProducts = computed(() => productsStore.filtredProducts)
 
-	onMounted(() => {
-		productsStore.fetchProducts()
+	const filteredProducts = computed<Product[]>(
+		() => productsStore.filteredProducts
+	)
+
+	onMounted(async () => {
+		await productsStore.fetchProducts()
 		loading.value = false
 	})
 </script>

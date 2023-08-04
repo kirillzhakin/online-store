@@ -24,27 +24,29 @@
 	</div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 	import { ref, reactive, onMounted, toRef } from 'vue'
 
 	import Button from '@/components/UI/Button.vue'
 	import Slider from '@/components/Slider.vue'
 	import { useCartStore } from '@/stores/cart'
+	import type { Product } from '@/types/product'
+	import type { Image } from '@/types/image'
 
 	const props = defineProps({
 		product: {
-			type: Object,
-			default: () => {},
+			type: Object as () => Product,
+			default: () => ({} as Product),
 			required: true
 		}
 	})
-	const noImage = [
+	const noImage: Image[] = [
 		{
 			id: 1,
 			img: '/img/no-image.jpg'
 		}
 	]
-	const sliderItem = [
+	const sliderItem: Image[] = [
 		{
 			id: 1,
 			img: '/img/top_1.jpg'
@@ -64,21 +66,22 @@
 	]
 
 	const cartStore = useCartStore()
-	const isInCart = ref(false)
+
+	const isInCart = ref<boolean>(false)
 	const propProduct = reactive({ product: toRef(props, 'product') })
 
 	onMounted(() => {
 		const cartInLocalStorage = localStorage.getItem('cart')
 		if (cartInLocalStorage) {
 			const prodId = propProduct.product.id
-			const data = JSON.parse(cartInLocalStorage)
+			const data: Product[] = JSON.parse(cartInLocalStorage)
 			data.find(item =>
 				item.id === prodId ? (isInCart.value = true) : (isInCart.value = false)
 			)
 		}
 	})
 
-	const toggleToCart = product => {
+	const toggleToCart = (product: Product): void => {
 		cartStore.toggleToCart(product)
 		if (isInCart.value === false) {
 			isInCart.value = true

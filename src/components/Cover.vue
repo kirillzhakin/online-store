@@ -8,7 +8,7 @@
 	</div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 	import CoverInformation from '@/components/CoverInformation.vue'
 </script>
 
