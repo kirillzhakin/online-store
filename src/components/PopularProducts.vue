@@ -1,11 +1,11 @@
 <template>
 	<Loader v-if="loading" />
-	<Products v-else :products="filteredProducts" />
+	<AllProducts v-else :products="filteredProducts" />
 </template>
 
 <script lang="ts" setup>
 	import { onMounted, ref, computed } from 'vue'
-	import Products from '@/components/Products.vue'
+	import AllProducts from '@/components/AllProducts.vue'
 	import Loader from '@/components/UI/Loader.vue'
 	import { useProductsStore } from '@/stores/products'
 	import type { Product } from '@/types/product'

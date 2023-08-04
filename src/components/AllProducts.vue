@@ -52,7 +52,7 @@
 		transform-origin: center top;
 	}
 	.products {
-		padding: 50px 6% 0 6%;
+		padding: 0 6%;
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 20px;
