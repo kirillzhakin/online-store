@@ -5,10 +5,7 @@
 			<div class="product-about">
 				<h2 class="product-name">{{ product.title }}</h2>
 				<span class="product-price">{{ product.price }}$</span>
-				<div class="product-description">
-					<span class="product-description__title">Product description</span>
-					<div>{{ product.description }}</div>
-				</div>
+				<ProductDescription :description="product.description" />
 			</div>
 
 			<Button
@@ -29,6 +26,7 @@
 
 	import Button from '@/components/UI/Button.vue'
 	import Slider from '@/components/Slider.vue'
+	import ProductDescription from '@/components/ProductDescription.vue'
 	import { useCartStore } from '@/stores/cart'
 	import type { Product } from '@/types/product'
 	import type { Image } from '@/types/image'
@@ -140,22 +138,6 @@
 			margin-bottom: 28px;
 			@media screen and (max-width: 620px) {
 				font-size: 18px;
-			}
-		}
-		&-description {
-			border-top: 1px solid var(--border-grey);
-			padding-top: 24px;
-			margin-bottom: 24px;
-			@media screen and (max-width: 620px) {
-				font-size: 14px;
-			}
-			&__title {
-				display: block;
-				margin-bottom: 14px;
-				font-family: var(--clash);
-				@media screen and (max-width: 620px) {
-					font-size: 14px;
-				}
 			}
 		}
 	}
