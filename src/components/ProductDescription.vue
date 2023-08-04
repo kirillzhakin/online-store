@@ -52,7 +52,6 @@
 			margin-bottom: 14px;
 			font-family: var(--clash);
 			font-size: 20px;
-
 			@media screen and (max-width: 620px) {
 				font-size: 16px;
 			}
@@ -61,10 +60,20 @@
 			width: 24px;
 			height: 24px;
 			transform: rotate(90deg);
+			transition: opacity, 0s, ease-out, 0.6s;
+			@media screen and (max-width: 620px) {
+				height: 32px;
+			}
+			&:hover {
+				opacity: 0.5;
+			}
 		}
 		&-top {
 			display: flex;
 			justify-content: space-between;
+			@media screen and (max-width: 620px) {
+				margin-bottom: 10px;
+			}
 		}
 	}
 </style>

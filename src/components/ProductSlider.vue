@@ -74,6 +74,9 @@
 			outline: none;
 			margin: 0 10px 0 0;
 			transition: opacity, 0s, ease-out, 0.6s;
+			@media screen and (max-width: 620px) {
+				height: 32px;
+			}
 			&:hover {
 				opacity: 0.5;
 			}
