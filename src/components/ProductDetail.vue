@@ -1,6 +1,8 @@
 <template>
 	<div class="product">
-		<Slider :slider="sliderItem ? sliderItem : noImage" />
+		<ProductSlider
+			:slider="product.image.length === 0 ? noImage : product.image"
+		/>
 		<div class="product-block">
 			<div class="product-about">
 				<h2 class="product-name">{{ product.title }}</h2>
@@ -25,11 +27,10 @@
 	import { ref, reactive, onMounted, toRef } from 'vue'
 
 	import Button from '@/components/UI/Button.vue'
-	import Slider from '@/components/Slider.vue'
+	import ProductSlider from '@/components/ProductSlider.vue'
 	import ProductDescription from '@/components/ProductDescription.vue'
 	import { useCartStore } from '@/stores/cart'
 	import type { Product } from '@/types/product'
-	import type { Image } from '@/types/image'
 
 	const props = defineProps({
 		product: {
@@ -38,30 +39,7 @@
 			required: true
 		}
 	})
-	const noImage: Image[] = [
-		{
-			id: 1,
-			img: '/img/no-image.jpg'
-		}
-	]
-	const sliderItem: Image[] = [
-		{
-			id: 1,
-			img: '/img/top_1.jpg'
-		},
-		{
-			id: 2,
-			img: '/img/top_2.jpg'
-		},
-		{
-			id: 3,
-			img: '/img/top_3.jpg'
-		},
-		{
-			id: 4,
-			img: '/img/top_4.jpg'
-		}
-	]
+	const noImage: string[] = ['/img/no-image.jpg']
 
 	const cartStore = useCartStore()
 

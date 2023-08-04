@@ -22,10 +22,10 @@
 
 <script lang="ts" setup>
 	import { ref, toRef, reactive, onMounted } from 'vue'
-	import type { Image } from '@/types/image'
+
 	const props = defineProps({
 		slider: {
-			type: Array as () => Image[],
+			type: Array as () => string[],
 			default: () => [],
 			required: false
 		}
@@ -37,17 +37,17 @@
 	const prevSlide = (): void => {
 		if (currentSliderIndex.value > 0) {
 			currentSliderIndex.value--
-			image.value = propSlider.slider[currentSliderIndex.value].img
+			image.value = propSlider.slider[currentSliderIndex.value]
 		}
 	}
 	const nextSlide = (): void => {
 		if (currentSliderIndex.value >= propSlider.slider.length - 1) return
 		currentSliderIndex.value++
-		image.value = propSlider.slider[currentSliderIndex.value].img
+		image.value = propSlider.slider[currentSliderIndex.value]
 	}
 
 	onMounted(() => {
-		image.value = propSlider.slider[currentSliderIndex.value].img
+		image.value = propSlider.slider[currentSliderIndex.value]
 	})
 </script>
 

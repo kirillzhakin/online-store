@@ -1,3 +1,3 @@
 export default {
-	MOCK: 'https://fakestoreapi.com'
+	MOCK: 'https://career-app-copy-backend.vercel.app'
 }

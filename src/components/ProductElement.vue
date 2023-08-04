@@ -1,7 +1,13 @@
 <template>
 	<div class="product">
 		<router-link :to="`products/${product.id}`" class="product-link">
-			<img :src="product.image" :alt="product.title" class="product-image" />
+			<img
+				:src="
+					product.image.length === 0 ? '/img/no-image.jpg' : product.image[0]
+				"
+				:alt="product.title"
+				class="product-image"
+			/>
 		</router-link>
 		<div class="product-container">
 			<div class="product-about">

@@ -6,7 +6,7 @@
 
 Стэк технологий: TypeScript, Vue3, Composition Api, Pinia, axios
 
-Fake Store API:
+API: https://career-app-copy-backend.vercel.app/products
 
 Выполено:
 
