@@ -73,7 +73,7 @@
 		&-image {
 			width: 100%;
 			height: 100%;
-			object-fit: cover;
+			object-fit: contain;
 			transition: opacity, 0s, ease-out, 0.4s;
 			&:hover {
 				opacity: 0.5;
