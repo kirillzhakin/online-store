@@ -56,10 +56,9 @@
 		display: flex;
 		flex-direction: column;
 		&-img {
-			min-height: 500px;
 			width: 100%;
 			margin-bottom: 28px;
-			object-fit: cover;
+			object-fit: contain;
 		}
 		&-block {
 			padding: 0 24px;
