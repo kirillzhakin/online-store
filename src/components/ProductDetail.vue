@@ -47,14 +47,10 @@
 	const propProduct = reactive({ product: toRef(props, 'product') })
 
 	onMounted(() => {
-		const cartInLocalStorage = localStorage.getItem('cart')
-		if (cartInLocalStorage) {
-			const prodId = propProduct.product.id
-			const data: Product[] = JSON.parse(cartInLocalStorage)
-			data.find(item =>
-				item.id === prodId ? (isInCart.value = true) : (isInCart.value = false)
-			)
-		}
+		const prodId = propProduct.product.id
+		cartStore.cartProducts.find(item =>
+			item.id === prodId ? (isInCart.value = true) : (isInCart.value = false)
+		)
 	})
 
 	const toggleToCart = (product: Product): void => {

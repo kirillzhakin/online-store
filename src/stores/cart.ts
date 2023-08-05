@@ -4,6 +4,7 @@ import type { Product } from '@/types/product'
 
 export const useCartStore = defineStore('cartStore', () => {
 	const cart = ref<Product[]>([])
+	const cartProducts = computed<Product[]>(() => cart.value)
 	const cartLength = computed<number>(() => cart.value.length)
 
 	const cartInLocalStorage = localStorage.getItem('cart')
@@ -24,6 +25,7 @@ export const useCartStore = defineStore('cartStore', () => {
 	}
 
 	return {
+		cartProducts,
 		cartLength,
 		toggleToCart
 	}
