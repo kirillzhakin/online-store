@@ -23,9 +23,17 @@ export const useProductsStore = defineStore('productsStore', () => {
 		if (userStore.selectedProducts.length === 0) return true
 		return userStore.selectedProducts.includes(product.category)
 	}
+	const includeProductsBySearch = (product: Product): boolean => {
+		const userStore = useUserStore()
+		return product.title
+			.toLowerCase()
+			.includes(userStore.productSearchTerm.toLowerCase())
+	}
 
 	const filteredProducts = computed<Product[]>(() => {
-		return products.value.filter(product => includeProductsByCategory(product))
+		return products.value
+			.filter(product => includeProductsByCategory(product))
+			.filter(product => includeProductsBySearch(product))
 	})
 
 	return {

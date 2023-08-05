@@ -2,9 +2,7 @@
 	<header class="header">
 		<div class="header-top">
 			<div class="header-top-left">
-				<div class="header-top-search">
-					<img src="/svg/header-search.svg" alt="search" />
-				</div>
+				<ProductSearch />
 				<div
 					class="header-top-mobile-menu"
 					@click="isOpenedMobileFilters = !isOpenedMobileFilters"
@@ -84,25 +82,26 @@
 <script lang="ts" setup>
 	import { ref, computed } from 'vue'
 	import { useProductsStore } from '@/stores/products'
-	import type { ComputedRef } from 'vue'
 	import { useCartStore } from '@/stores/cart'
 	import { useUserStore } from '@/stores/user'
 	import Button from '@/components/UI/Button.vue'
+	import ProductSearch from '@/components/ProductSearch.vue'
+	import type { ComputedRef } from 'vue'
+
+	const isOpenedMobileFilters = ref<boolean>(false)
 
 	const userStore = useUserStore()
-
-	const selectValue = (category: string): void => {
-		if (category === 'all products') return userStore.allProducts()
-		userStore.addSelectedProducts([category])
-	}
-
-	const isOpenedMobileFilters = ref(false)
 	const cartStore = useCartStore()
 	const productsStore = useProductsStore()
 
 	const uniqueCategory: ComputedRef<string[]> = computed(
 		() => productsStore.uniqueCategory
 	)
+
+	const selectValue = (category: string): void => {
+		if (category === 'all products') return userStore.allProducts()
+		userStore.addSelectedProducts([category])
+	}
 </script>
 
 <style lang="scss" scoped>
@@ -146,16 +145,14 @@
 				display: flex;
 				align-items: center;
 				@media screen and (max-width: 620px) {
+					display: grid;
+					grid-template-columns: 1fr 32px;
+					column-gap: 10px;
 					order: 2;
 					height: 32px;
 				}
 			}
-			&-search {
-				@media screen and (max-width: 620px) {
-					margin-right: 16px;
-					height: 100%;
-				}
-			}
+
 			&-mobile-menu {
 				display: none;
 				@media screen and (max-width: 620px) {
@@ -217,9 +214,12 @@
 			text-decoration: none;
 			color: #22202e;
 			text-align: center;
-
 			@media screen and (max-width: 620px) {
 				order: 1;
+			}
+			@media screen and (max-width: 500px) {
+				font-size: 16px;
+				margin-right: 10px;
 			}
 			&:hover {
 				text-decoration: underline;

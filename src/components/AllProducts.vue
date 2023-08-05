@@ -9,6 +9,10 @@
 				/>
 			</transition-group>
 		</div>
+		<div v-if="products.length === 0" class="products-view">
+			<h2>No products</h2>
+			<p>Search again or try updating your filters</p>
+		</div>
 	</div>
 </template>
 
@@ -67,6 +71,9 @@
 		}
 		&-container {
 			margin-bottom: 56px;
+		}
+		&-view {
+			text-align: center;
 		}
 	}
 </style>
