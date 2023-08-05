@@ -2,7 +2,7 @@
 	<button
 		v-if="type === 'button'"
 		class="button"
-		:style="{ background, color, padding }"
+		:style="{ background, color, padding, height }"
 	>
 		<slot></slot>
 	</button>
@@ -10,7 +10,7 @@
 		v-else
 		:to="to"
 		class="button"
-		:style="{ background, color, padding }"
+		:style="{ background, color, padding, height }"
 	>
 		<slot></slot>
 	</router-link>
@@ -28,6 +28,11 @@
 		},
 		padding: {
 			type: String,
+			requred: false
+		},
+		height: {
+			type: String,
+			default: '56px',
 			requred: false
 		},
 		type: {
@@ -53,13 +58,11 @@
 		border: none;
 		cursor: pointer;
 		font-size: 16px;
-		height: 56px;
 		text-decoration: none;
 		transition: opacity, 0s, ease-out, 0.3s;
 		@media screen and (max-width: 620px) {
 			width: 100%;
 		}
-
 		&:hover {
 			opacity: 0.5;
 		}

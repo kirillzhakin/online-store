@@ -8,6 +8,7 @@
 			<Button
 				color="var(--primary)"
 				:padding="padding"
+				height="auto"
 				@click="selectValue(category)"
 			>
 				{{ category }}
@@ -43,21 +44,16 @@
 	)
 
 	const selectValue = (category: string): void => {
-		if (category === 'all products') return userStore.allProducts()
-		userStore.addSelectedProducts([category])
+		if (category === 'All products') return userStore.allProducts()
+		userStore.addSelectedProductsCategory([category])
 	}
 </script>
 
 <style lang="scss" scoped>
 	.category {
-		height: 62px;
 		display: flex;
-		justify-content: center;
+		height: 31px;
 		align-items: center;
-		@media screen and (max-width: 620px) {
-			display: none;
-			height: 0;
-		}
 		&__btn {
 			margin: 0 22px;
 			color: var(--gray);

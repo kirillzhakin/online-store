@@ -28,11 +28,14 @@
 				</div>
 			</div>
 		</div>
-
-		<ProductCategory padding="0" :isCategory="true" />
+		<div class="header-filters">
+			<ProductPrice padding="0" :isPrice="true" />
+			<ProductCategory padding="0" :isCategory="true" />
+		</div>
 
 		<transition name="slide-fade">
 			<div class="header-mobile" v-if="isOpenedMobileFilters">
+				<ProductPrice />
 				<ProductCategory :isCategory="false" />
 				<div class="header-top-right header-top-right-mobile">
 					<div class="header-top-right__cart">
@@ -61,6 +64,7 @@
 	import { useCartStore } from '@/stores/cart'
 	import ProductSearch from '@/components/ProductSearch.vue'
 	import ProductCategory from '@/components/ProductCategory.vue'
+	import ProductPrice from '@/components/ProductPrice.vue'
 
 	const isOpenedMobileFilters = ref<boolean>(false)
 
@@ -83,12 +87,19 @@
 	}
 
 	.header {
-		height: 132px;
 		position: relative;
 		@media screen and (max-width: 620px) {
 			height: 69px;
 			padding: 20px 0;
 		}
+		&-filters {
+			display: flex;
+			flex-direction: column;
+			@media screen and (max-width: 620px) {
+				display: none;
+			}
+		}
+
 		&-top {
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);

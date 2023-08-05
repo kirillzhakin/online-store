@@ -2,25 +2,32 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore('userStore', () => {
-	const selectedProducts = ref<string[]>([])
+	const selectedProductsCategory = ref<string[]>([])
+	const selectedProductsPrice = ref<string>('')
 	const productSearchTerm = ref<string>('')
 
-	const addSelectedProducts = (products: string[]): void => {
-		selectedProducts.value = products
+	const addSelectedProductsCategory = (products: string[]): void => {
+		selectedProductsCategory.value = products
+	}
+	const addSelectedProductsPrice = (products: string): void => {
+		selectedProductsPrice.value = products
 	}
 	const updateProductSearchTerm = (term: string): void => {
 		productSearchTerm.value = term
 	}
 
 	const allProducts = (): void => {
-		selectedProducts.value = []
+		selectedProductsCategory.value = []
+		selectedProductsPrice.value = ''
 		productSearchTerm.value = ''
 	}
 
 	return {
-		selectedProducts,
+		selectedProductsCategory,
+		selectedProductsPrice,
 		productSearchTerm,
-		addSelectedProducts,
+		addSelectedProductsCategory,
+		addSelectedProductsPrice,
 		updateProductSearchTerm,
 		allProducts
 	}
