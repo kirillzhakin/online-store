@@ -29,34 +29,11 @@
 			</div>
 		</div>
 
-		<ui class="header-filters">
-			<li
-				v-for="category of uniqueCategory"
-				:key="category"
-				class="header-filters__btn"
-			>
-				<Button
-					color="var(--primary)"
-					padding="0"
-					@click="selectValue(category)"
-				>
-					{{ category }}
-				</Button>
-			</li>
-		</ui>
+		<ProductCategory padding="0" :isCategory="true" />
+
 		<transition name="slide-fade">
-			<div class="header-filters-mobile" v-if="isOpenedMobileFilters">
-				<ui>
-					<li
-						v-for="category of uniqueCategory"
-						:key="category"
-						class="header-filters__btn"
-					>
-						<Button color="var(--primary)" @click="selectValue(category)">
-							{{ category }}
-						</Button>
-					</li>
-				</ui>
+			<div class="header-mobile" v-if="isOpenedMobileFilters">
+				<ProductCategory :isCategory="false" />
 				<div class="header-top-right header-top-right-mobile">
 					<div class="header-top-right__cart">
 						<router-link to="/cart">
@@ -80,28 +57,14 @@
 </template>
 
 <script lang="ts" setup>
-	import { ref, computed } from 'vue'
-	import { useProductsStore } from '@/stores/products'
+	import { ref } from 'vue'
 	import { useCartStore } from '@/stores/cart'
-	import { useUserStore } from '@/stores/user'
-	import Button from '@/components/UI/Button.vue'
 	import ProductSearch from '@/components/ProductSearch.vue'
-	import type { ComputedRef } from 'vue'
+	import ProductCategory from '@/components/ProductCategory.vue'
 
 	const isOpenedMobileFilters = ref<boolean>(false)
 
-	const userStore = useUserStore()
 	const cartStore = useCartStore()
-	const productsStore = useProductsStore()
-
-	const uniqueCategory: ComputedRef<string[]> = computed(
-		() => productsStore.uniqueCategory
-	)
-
-	const selectValue = (category: string): void => {
-		if (category === 'all products') return userStore.allProducts()
-		userStore.addSelectedProducts([category])
-	}
 </script>
 
 <style lang="scss" scoped>
@@ -208,6 +171,18 @@
 				}
 			}
 		}
+		&-mobile {
+			display: none;
+			@media screen and (max-width: 620px) {
+				display: block;
+				position: absolute;
+				background: #fff;
+				width: 100%;
+				top: 100px;
+				border: 1px solid;
+				padding: 40px 24px;
+			}
+		}
 		&-logo {
 			font-family: var(--inter);
 			font-size: 24px;
@@ -223,38 +198,6 @@
 			}
 			&:hover {
 				text-decoration: underline;
-			}
-		}
-		&-filters {
-			height: 62px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			@media screen and (max-width: 620px) {
-				display: none;
-				height: 0;
-			}
-			&__btn {
-				margin: 0 22px;
-				color: var(--gray);
-				list-style-type: none;
-
-				@media screen and (max-width: 620px) {
-					display: block;
-					margin: 0 0 20px 0;
-				}
-			}
-			&-mobile {
-				display: none;
-				@media screen and (max-width: 620px) {
-					display: block;
-					position: absolute;
-					background: #fff;
-					width: 100%;
-					top: 100px;
-					border: 1px solid;
-					padding: 40px 24px;
-				}
 			}
 		}
 	}
