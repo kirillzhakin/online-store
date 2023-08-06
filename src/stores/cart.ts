@@ -4,8 +4,12 @@ import type { Product } from '@/types/product'
 
 export const useCartStore = defineStore('cartStore', () => {
 	const cart = ref<Product[]>([])
-	const cartProducts = computed<Product[]>(() => cart.value)
 	const cartLength = computed<number>(() => cart.value.length)
+	const cartProducts = computed<Product[]>(() => cart.value)
+	const cartTotalScore = computed<number>(() => {
+		const totalPrice = cart.value.reduce((a, b) => a + b.price, 0)
+		return parseFloat(totalPrice.toFixed(2))
+	})
 
 	const cartInLocalStorage = localStorage.getItem('cart')
 	if (cartInLocalStorage) {
@@ -25,8 +29,9 @@ export const useCartStore = defineStore('cartStore', () => {
 	}
 
 	return {
-		cartProducts,
 		cartLength,
+		cartProducts,
+		cartTotalScore,
 		toggleToCart
 	}
 })
