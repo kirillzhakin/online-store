@@ -4,14 +4,24 @@
 			<h2 class="cart-title">TOTAL SCORE:</h2>
 			<span class="cart-score"> {{ cartStore.cartTotalScore }} $ </span>
 		</div>
-		<Button background="#2a254b">Pay for products</Button>
+		<Button background="#2a254b" @click="popupStore.setIsOpen(true)"
+			>Pay for products</Button
+		>
+		<PopupForm name="pay" title="Сard payment" buttonText="Pay">
+			<CartPay />
+		</PopupForm>
 	</div>
 </template>
 
 <script lang="ts" setup>
 	import Button from '@/components/UI/Button.vue'
+	import PopupForm from '@/components/PopupForm.vue'
+	import CartPay from '@/components/CartPay.vue'
 	import { useCartStore } from '@/stores/cart'
+	import { usePopupStore } from '@/stores/popup'
+
 	const cartStore = useCartStore()
+	const popupStore = usePopupStore()
 </script>
 
 <style lang="scss" scoped>
