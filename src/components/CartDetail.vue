@@ -29,7 +29,9 @@
 		display: flex;
 		justify-content: space-between;
 		padding: 60px 6% 10px 6%;
+		margin-top: 82px;
 		@media screen and (max-width: 620px) {
+			margin-top: 0;
 			flex-direction: column;
 			padding: 106px 0 0 0;
 		}

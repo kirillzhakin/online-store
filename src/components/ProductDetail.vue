@@ -72,7 +72,7 @@
 		grid-template-columns: minmax(auto, 500px) minmax(auto, 500px);
 		column-gap: 65px;
 		align-items: center;
-		margin-bottom: 65px;
+		margin: 82px 0 65px 0;
 		@media screen and (max-width: 620px) {
 			display: flex;
 			flex-direction: column;

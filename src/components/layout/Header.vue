@@ -29,14 +29,14 @@
 			</div>
 		</div>
 		<div class="header-filters">
-			<ProductPrice padding="0" :isPrice="true" />
-			<ProductCategory padding="0" :isCategory="true" />
+			<ProductPrice v-if="isVisible" padding="0" :isPrice="true" />
+			<ProductCategory v-if="isVisible" padding="0" :isCategory="true" />
 		</div>
 
 		<transition name="slide-fade">
 			<div class="header-mobile" v-if="isOpenedMobileFilters">
-				<ProductPrice />
-				<ProductCategory :isCategory="false" />
+				<ProductPrice v-if="isVisible" />
+				<ProductCategory v-if="isVisible" :isCategory="false" />
 				<div class="header-top-right header-top-right-mobile">
 					<div class="header-top-right__cart">
 						<router-link to="/cart">
@@ -60,12 +60,26 @@
 </template>
 
 <script lang="ts" setup>
-	import { ref } from 'vue'
+	import { ref, watch } from 'vue'
+	import { useRoute } from 'vue-router'
 	import { useCartStore } from '@/stores/cart'
 	import ProductSearch from '@/components/ProductSearch.vue'
 	import ProductCategory from '@/components/ProductCategory.vue'
 	import ProductPrice from '@/components/ProductPrice.vue'
 
+	const route = useRoute()
+	const isVisible = ref(true)
+
+	watch(
+		() => route.name,
+		value => {
+			if (value === 'Home') {
+				isVisible.value = true
+			} else {
+				isVisible.value = false
+			}
+		}
+	)
 	const isOpenedMobileFilters = ref<boolean>(false)
 
 	const cartStore = useCartStore()
