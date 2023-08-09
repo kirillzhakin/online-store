@@ -72,13 +72,8 @@
 
 	watch(
 		() => route.name,
-		value => {
-			if (value === 'Home') {
-				isVisible.value = true
-			} else {
-				isVisible.value = false
-			}
-		}
+		value =>
+			value === 'Home' ? (isVisible.value = true) : (isVisible.value = false)
 	)
 	const isOpenedMobileFilters = ref<boolean>(false)
 
