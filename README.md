@@ -76,3 +76,5 @@ npm run dev
 Репозиторий: https://github.com/kirillzhakin/online-store
 
 Сайт: https://online-store-black-seven.vercel.app
+
+git test
