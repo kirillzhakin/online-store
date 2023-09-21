@@ -77,4 +77,4 @@ npm run dev
 
 Сайт: https://online-store-black-seven.vercel.app
 
-git test
+git test 2
